@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>디지털 창고 관리자 - 스테이지 1</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <section class="top-bar" aria-label="게임 정보">
+        <div>
+          <p class="stage-label">Stage 1</p>
+          <h1>bit 조각으로 byte 상자 만들기</h1>
+        </div>
+        <button class="reset-button" id="resetButton" type="button">다시 정리</button>
+      </section>
+
+      <section class="lesson-strip" aria-label="학습 설명">
+        <div class="lesson-item">
+          <strong>bit</strong>
+          <span>0 또는 1 하나를 담는 가장 작은 데이터 조각</span>
+        </div>
+        <div class="lesson-arrow" aria-hidden="true">→</div>
+        <div class="lesson-item">
+          <strong>byte</strong>
+          <span>bit 조각 8개가 모인 작은 데이터 상자</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="스테이지 1 작업 공간">
+        <div class="item-zone">
+          <div class="zone-heading">
+            <h2>정리할 bit 아이템</h2>
+            <p>0 조각(bit), 1 조각(bit)을 byte 상자에 넣어보세요.</p>
+          </div>
+          <div class="bit-list" id="bitList" aria-label="bit 아이템 목록"></div>
+        </div>
+
+        <div class="byte-zone">
+          <div class="zone-heading">
+            <h2>8칸 데이터 상자(byte)</h2>
+            <p>빈칸 8개가 모두 채워지면 byte가 완성됩니다.</p>
+          </div>
+          <div class="byte-box" id="byteBox" aria-label="byte 상자 놓기 영역">
+            <div class="slot-grid" id="slotGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feedback-panel" aria-live="polite">
+        <div>
+          <span class="progress-text" id="progressText">0 / 8 bit</span>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+        <p id="message">bit 조각을 눌러 byte 상자로 옮겨보세요.</p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
