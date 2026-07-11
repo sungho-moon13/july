@@ -3,59 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>디지털 창고 관리자 - 스테이지 1</title>
+    <title>폰 저장공간 구조대</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="game-shell">
-      <section class="top-bar" aria-label="게임 정보">
-        <div>
-          <p class="stage-label">Stage 1</p>
-          <h1>bit 조각으로 byte 상자 만들기</h1>
-        </div>
-        <button class="reset-button" id="resetButton" type="button">다시 정리</button>
-      </section>
+      <section class="phone-frame" aria-label="핸드폰 게임 화면">
+        <div class="phone-bezel">
+          <div class="phone-speaker" aria-hidden="true"></div>
 
-      <section class="lesson-strip" aria-label="학습 설명">
-        <div class="lesson-item">
-          <strong>bit</strong>
-          <span>0 또는 1 하나를 담는 가장 작은 데이터 조각</span>
-        </div>
-        <div class="lesson-arrow" aria-hidden="true">→</div>
-        <div class="lesson-item">
-          <strong>byte</strong>
-          <span>bit 조각 8개가 모인 작은 데이터 상자</span>
-        </div>
-      </section>
+          <div class="phone-screen">
+            <header class="app-header">
+              <div>
+                <p class="stage-label">실시간 정리</p>
+                <h1>폰 저장공간 구조대</h1>
+              </div>
+              <button class="reset-button" id="resetButton" type="button">다시</button>
+            </header>
 
-      <section class="workspace" aria-label="스테이지 1 작업 공간">
-        <div class="item-zone">
-          <div class="zone-heading">
-            <h2>정리할 bit 아이템</h2>
-            <p>0 조각(bit), 1 조각(bit)을 byte 상자에 넣어보세요.</p>
-          </div>
-          <div class="bit-list" id="bitList" aria-label="bit 아이템 목록"></div>
-        </div>
+            <section class="status-row" aria-label="간단 점수판">
+              <span>⏱ <strong id="timeText">0초</strong></span>
+              <span>★ <strong id="scoreText">0점</strong></span>
+              <span>🔥 <strong id="comboText">0</strong></span>
+              <span>Lv <strong id="levelText">1</strong></span>
+            </section>
 
-        <div class="byte-zone">
-          <div class="zone-heading">
-            <h2>8칸 데이터 상자(byte)</h2>
-            <p>빈칸 8개가 모두 채워지면 byte가 완성됩니다.</p>
-          </div>
-          <div class="byte-box" id="byteBox" aria-label="byte 상자 놓기 영역">
-            <div class="slot-grid" id="slotGrid"></div>
-          </div>
-        </div>
-      </section>
+            <section class="phone-meter" aria-label="핸드폰 저장공간">
+              <div class="meter-copy">
+                <strong id="storageText">21.5GB / 32GB 사용 중</strong>
+                <span id="incomingText">파일이 계속 들어옵니다.</span>
+              </div>
+              <div class="storage-track" aria-hidden="true">
+                <div class="storage-fill" id="storageFill"></div>
+              </div>
+            </section>
 
-      <section class="feedback-panel" aria-live="polite">
-        <div>
-          <span class="progress-text" id="progressText">0 / 8 bit</span>
-          <div class="progress-track" aria-hidden="true">
-            <div class="progress-fill" id="progressFill"></div>
+            <section class="workspace" aria-label="실시간 정리 작업 공간">
+              <div class="item-zone">
+                <div class="zone-heading">
+                  <h2>들어오는 파일</h2>
+                  <p>카드의 배지와 같은 이름의 정리함으로 끌어 놓으세요.</p>
+                </div>
+                <div class="item-grid" id="itemGrid" aria-label="정리할 파일 아이템 목록"></div>
+              </div>
+
+              <div class="storage-zone" aria-label="정리함">
+                <div class="drop-box keep-box" data-action="keep" aria-label="보관함">
+                  <span>보관</span>
+                  <strong>중요</strong>
+                  <small id="keepCount">0</small>
+                </div>
+                <div class="drop-box backup-box" data-action="backup" aria-label="백업함">
+                  <span>백업</span>
+                  <strong>클라우드</strong>
+                  <small id="backupCount">0</small>
+                </div>
+                <div class="drop-box delete-box" data-action="delete" aria-label="삭제함">
+                  <span>삭제</span>
+                  <strong>비움</strong>
+                  <small id="deleteCount">0</small>
+                </div>
+              </div>
+            </section>
+
+            <section class="feedback-panel" aria-live="polite">
+              <p id="message">시작 버튼을 누르면 파일이 실시간으로 들어옵니다.</p>
+              <button class="start-button" id="startButton" type="button">시작</button>
+            </section>
           </div>
         </div>
-        <p id="message">bit 조각을 눌러 byte 상자로 옮겨보세요.</p>
       </section>
     </main>
 
