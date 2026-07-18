@@ -3,78 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>폰 저장공간 구조대</title>
+    <title>용량 챌린지</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="game-shell">
-      <section class="phone-frame" aria-label="핸드폰 게임 화면">
-        <div class="phone-bezel">
-          <div class="phone-speaker" aria-hidden="true"></div>
+    <main class="app-shell">
+      <section class="phone" aria-label="용량 챌린지 게임">
+        <div class="notch" aria-hidden="true"></div>
 
-          <div class="phone-screen">
-            <header class="app-header">
-              <div>
-                <p class="stage-label">실시간 정리</p>
-                <h1>폰 저장공간 구조대</h1>
-              </div>
-              <button class="reset-button" id="resetButton" type="button">다시</button>
-            </header>
-
-            <section class="status-row" aria-label="간단 점수판">
-              <span>⏱ <strong id="timeText">0초</strong></span>
-              <span>★ <strong id="scoreText">0점</strong></span>
-              <span>🔥 <strong id="comboText">0</strong></span>
-              <span>Lv <strong id="levelText">1</strong></span>
-            </section>
-
-            <section class="phone-meter" aria-label="핸드폰 저장공간">
-              <div class="meter-copy">
-                <strong id="storageText">21.5GB / 32GB 사용 중</strong>
-                <span id="incomingText">파일이 계속 들어옵니다.</span>
-              </div>
-              <div class="storage-track" aria-hidden="true">
-                <div class="storage-fill" id="storageFill"></div>
-              </div>
-            </section>
-
-            <section class="workspace" aria-label="실시간 정리 작업 공간">
-              <div class="item-zone">
-                <div class="zone-heading">
-                  <h2>들어오는 파일</h2>
-                  <p>카드의 배지와 같은 이름의 정리함으로 끌어 놓으세요.</p>
-                </div>
-                <div class="item-grid" id="itemGrid" aria-label="정리할 파일 아이템 목록"></div>
-              </div>
-
-              <div class="storage-zone" aria-label="정리함">
-                <div class="drop-box keep-box" data-action="keep" aria-label="보관함">
-                  <span>보관</span>
-                  <strong>중요</strong>
-                  <small id="keepCount">0</small>
-                </div>
-                <div class="drop-box backup-box" data-action="backup" aria-label="백업함">
-                  <span>백업</span>
-                  <strong>클라우드</strong>
-                  <small id="backupCount">0</small>
-                </div>
-                <div class="drop-box delete-box" data-action="delete" aria-label="삭제함">
-                  <span>삭제</span>
-                  <strong>비움</strong>
-                  <small id="deleteCount">0</small>
-                </div>
-              </div>
-            </section>
-
-            <section class="feedback-panel" aria-live="polite">
-              <p id="message">시작 버튼을 누르면 파일이 실시간으로 들어옵니다.</p>
-              <button class="start-button" id="startButton" type="button">시작</button>
-            </section>
+        <section class="screen start-screen" id="startScreen">
+          <div class="status-bar"><span>9:41</span><span>▮▮▮ ◉</span></div>
+          <div class="start-content">
+            <div class="app-mark" aria-hidden="true"><span>◒</span></div>
+            <p class="eyebrow">SMART STORAGE GAME</p>
+            <h1>용량<br /><em>챌린지</em></h1>
+            <p class="intro">주어진 저장공간 안에<br />최대한 많은 물건을 담아 전달하세요.</p>
+            <div class="mini-storage" aria-label="저장공간 미리보기">
+              <div class="mini-storage-head"><span>오늘의 전달 용량</span><strong>10TB</strong></div>
+              <div class="progress"><i style="width: 55%"></i></div>
+              <span class="mini-caption">용량을 넘지 않게 알뜰하게 담아요</span>
+            </div>
+            <div class="record-strip" aria-label="내 기록">
+              <div><span>최고 점수</span><strong id="bestScoreText">0점</strong></div>
+              <div><span>최고 스테이지</span><strong id="bestStageText">1</strong></div>
+            </div>
+            <button class="primary-button" id="startButton" type="button">게임 시작 <span>→</span></button>
+            <p class="rule-hint">물건을 여러 개 선택해요 · 1TB = 1,000GB</p>
           </div>
-        </div>
+          <div class="home-indicator" aria-hidden="true"></div>
+        </section>
+
+        <section class="screen game-screen is-hidden" id="gameScreen">
+          <div class="danger-overlay" id="dangerOverlay" aria-hidden="true"><span>시간 임박!</span></div>
+          <div class="particle-layer" id="particleLayer" aria-hidden="true"></div>
+          <div class="status-bar"><button class="icon-button" id="homeButton" type="button" aria-label="시작 화면으로">‹</button><span>9:41</span><span>▮▮▮ ◉</span></div>
+          <header class="game-header">
+            <div><p class="eyebrow" id="stageLabel">STAGE 01</p><h2>가장 많이 담아보세요</h2></div>
+            <button class="reset-button" id="resetButton" type="button">처음부터</button>
+          </header>
+          <div class="stats">
+            <div><span>점수</span><strong id="scoreText">0</strong></div>
+            <div><span>기회</span><strong class="hearts" id="chanceText">♥♥♥</strong></div>
+            <div><span>남은 시간</span><strong class="timer-text" id="timerText">15초</strong></div>
+            <div><span>담은 물건</span><strong id="selectedText">0개</strong></div>
+          </div>
+          <section class="storage-card">
+            <div class="storage-card-head"><div><span class="label">이번에 주어진 저장 용량</span><strong id="deviceCapacityText">10TB</strong></div><span class="total-text" id="deviceTypeText">전달 미션</span></div>
+            <div class="large-progress"><i id="storageFill"></i></div>
+            <div class="storage-card-foot"><span>남은 용량</span><span id="storageMessage">10TB</span></div>
+          </section>
+          <div class="choice-heading"><div><p class="eyebrow">PACK YOUR DELIVERY</p><h3>전달할 물건을 골라 담으세요</h3></div><span id="roundText">01 / 05</span></div>
+          <section class="card-grid item-grid" id="cardGrid" aria-label="담을 물건 목록"></section>
+          <div class="game-message" id="gameMessage" aria-live="polite">물건을 여러 개 선택한 뒤 전달하기를 눌러보세요.</div>
+          <button class="primary-button deliver-button" id="deliverButton" type="button">이대로 전달하기 <span>→</span></button>
+          <div class="home-indicator" aria-hidden="true"></div>
+        </section>
+
+        <section class="screen result-screen is-hidden" id="resultScreen">
+          <div class="status-bar"><span>9:41</span><span>▮▮▮ ◉</span></div>
+          <div class="result-content">
+            <div class="result-icon" id="resultIcon">✓</div>
+            <p class="eyebrow">CHALLENGE COMPLETE</p>
+            <h2 id="resultTitle">잘했어요!</h2>
+            <p class="result-copy" id="resultCopy">저장공간을 알뜰하게 사용했어요.</p>
+            <div class="result-score"><span>최종 점수</span><strong id="finalScore">0점</strong></div>
+            <div class="result-summary" id="resultSummary"></div>
+            <p class="record-result" id="recordResult">최고 기록을 확인하는 중...</p>
+            <button class="primary-button" id="retryButton" type="button">다음 스테이지 <span>→</span></button>
+            <button class="text-button" id="resultHomeButton" type="button">시작 화면으로</button>
+          </div>
+          <div class="home-indicator" aria-hidden="true"></div>
+        </section>
       </section>
     </main>
-
     <script src="script.js"></script>
   </body>
 </html>
